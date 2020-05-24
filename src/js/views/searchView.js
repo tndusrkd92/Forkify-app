@@ -2,7 +2,7 @@ import { elements } from './base';
 
 export const getInput = () => elements.searchInput.value;           // arrow function automatically return its value.
 
-export const clearInput = () => {
+export const clearInput = () => {                                   // {} is necessary to prevent to return any value.
     elements.searchInput.value = '';
 };
 
