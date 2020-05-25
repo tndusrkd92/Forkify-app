@@ -32,6 +32,7 @@ const controlSearch = async () => {
     }
 };
 
+/* Event handler */
 elements.searchForm.addEventListener('submit', e => {
     e.preventDefault();
     controlSearch();
@@ -45,4 +46,3 @@ elements.searchResPages.addEventListener('click', e => {
         searchView.renderResults(state.search.result, goToPage);
     }
 }); 
-
