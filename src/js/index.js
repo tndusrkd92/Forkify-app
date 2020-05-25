@@ -1,4 +1,5 @@
 import Search from './models/Search';
+import Recipe from './models/Recipe';
 import * as searchView from './views/searchView'; 
 import { elements, renderLoader, clearLoader } from './views/base';
 
@@ -10,6 +11,9 @@ import { elements, renderLoader, clearLoader } from './views/base';
 */
 const state = {};
 
+/*
+* SEARCH CONTROLLER
+*/
 const controlSearch = async () => {
     // 1) get query from view
     const query = searchView.getInput();
@@ -23,16 +27,20 @@ const controlSearch = async () => {
         searchView.clearResult();
         renderLoader(elements.searchRes);
 
-        // 4) Search for recipes
-        await state.search.getResults(); 
+        try {
+            // 4) Search for recipes
+            await state.search.getResults(); 
 
-        // 5) Render result on UI
-        clearLoader();
-        searchView.renderResults(state.search.result);
+            // 5) Render result on UI
+            clearLoader();
+            searchView.renderResults(state.search.result);
+        } catch {
+            alert('Something wrong with search...');
+            clearLoader();
+        }
     }
 };
 
-/* Event handler */
 elements.searchForm.addEventListener('submit', e => {
     e.preventDefault();
     controlSearch();
@@ -46,3 +54,39 @@ elements.searchResPages.addEventListener('click', e => {
         searchView.renderResults(state.search.result, goToPage);
     }
 }); 
+
+/*
+* RECIPE CONTROLLER
+*/
+const controlRecipe = async () => {
+    const id = window.location.hash.replace('#', '');
+    console.log(id);
+
+    if (id) {
+        // Prepare UI for changes
+
+        // Create new recipe object
+        state.recipe = new Recipe(id); 
+
+        try {
+            // Get recipe data
+            await state.recipe.getRecipe();
+
+            // Calculating servings and time
+            state.recipe.calcTime();
+            state.recipe.calcServing();
+
+            // Render recipe
+            console.log(state.recipe);
+        } catch (error){
+            alert('Error processing recipe!');
+        }
+    };
+};
+
+/* 
+// Apply multiple mehod to the same place.
+// window.addEventListener('hashchange', controlRecipe);
+// window.addEventListener('load', controlRecipe);
+*/
+['hashchange', 'load'].forEach(event => window.addEventListener(event, controlRecipe)); 
