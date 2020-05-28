@@ -12,7 +12,11 @@ export const clearResult = () => {
 };
 
 export const highlighteSelected = id => {
-    document.querySelector('a[href=#${id}]').classList.add('.result__link--active');                // CSS selector 
+    const resultArr = Array.from(document.querySelectorAll('.results__link'));
+    resultArr.forEach(el => {
+        el.classList.remove('results__link--active');
+    });
+    document.querySelector(`a[href="#${id}"]`).classList.add('results__link--active');                // CSS selector 
 };
 
 /*  
