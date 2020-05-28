@@ -11,6 +11,10 @@ export const clearResult = () => {
     elements.searchResPages.innerHTML = '';
 };
 
+export const highlighteSelected = id => {
+    document.querySelector('a[href=#${id}]').classList.add('.result__link--active');                // CSS selector 
+};
+
 /*  
 // 'Pasta with tomato and spinach'
 acc: 0 / acc + cur.length = 5 / new title = ['Pasta']  
