@@ -1,8 +1,9 @@
 import { elements, elementStrings } from './base';
+import { Fraction } from 'fractional';
 
 export const clearRecipe = () => {
     elements.recipe.innerHTML = '';
-}
+};
 
 const createIngredient = ingredient => `
     <li class="recipe__item">
