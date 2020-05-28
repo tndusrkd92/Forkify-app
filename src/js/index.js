@@ -48,7 +48,7 @@ elements.searchForm.addEventListener('submit', e => {
 });
 
 elements.searchResPages.addEventListener('click', e => {
-    const btn = e.target.closest('.btn-inline');
+    const btn = e.target.closest('.btn-inline');                                    // Event delegation : closest
     if (btn) {
         const goToPage = parseInt(btn.dataset.goto, 10);
         searchView.clearResult();
@@ -98,3 +98,22 @@ const controlRecipe = async () => {
 // window.addEventListener('load', controlRecipe);
 */
 ['hashchange', 'load'].forEach(event => window.addEventListener(event, controlRecipe)); 
+
+
+// Handling recipe button clicks                                                                            // Event delegation : matches                                   
+elements.recipe.addEventListener('click', e => {
+    if (e.target.matches('.btn-decrease, .btn-decrease *')) {
+
+        // Decrease button is clicked
+        if (state.recipe.servings > 1) {
+            state.recipe.updateServings('dec');
+            recipeView.updateServingsIngredients(state.recipe);
+        };
+
+    } else if (e.target.matches('.btn-increase, .btn-increase *')) {
+        // Increase button is clicked
+        state.recipe.updateServings('inc');
+        recipeView.updateServingsIngredients(state.recipe);
+    };
+    console.log(state.recipe);
+});
