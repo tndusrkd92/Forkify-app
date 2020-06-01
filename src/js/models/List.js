@@ -20,7 +20,7 @@ export default class List {
         // [2, 4, 8].splice(1, 2) --> returns [4, 8], original array is [2]         -- How many elements take away , not mutate original array
         // [2, 4, 8].slice(1, 2) --> returns 4, original array is [2, 4, 8]         -- End poirnts (not included) , mutate original array
         const index = this.items.findIndex(el => el.id === id);
-        this.items.splice(index, 1);
+        this.items.splice(index, 1);                                                 // Splice returns mutated array 
     }
 
     updateCount (id, newCount) {
