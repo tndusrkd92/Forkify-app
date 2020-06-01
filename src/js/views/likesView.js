@@ -1,4 +1,5 @@
 import { elements } from './base';
+import { limitRecipeTitle } from './searchView';
 
 export const toggleLikeBtn = isLiked => {
     const iconString = isLiked ? 'icon-heart' : 'icon-heart-outlined';
@@ -22,5 +23,11 @@ export const renderLike = like => {
                 </div>
             </a>
         </li>
-    `
+    `;
+    elements.likesList.insertAdjacentHTML('beforeend', markup);
+};
+
+export const deleteLike = id => {
+    const el = document.querySelector(`.likes__link[href*="${id}"]`);
+    if (el) el.parentElement.removeChild(el);
 };
