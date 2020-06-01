@@ -11,11 +11,11 @@ export default class Likes {
 
     deleteLike (id) {
         const index = this.likes.findIndex(el => el.id === id);
-        this.likes.slice(index, 1);
+        this.likes.splice(index, 1);
     }
 
     isLiked (id) {
-        return this.likes.findIndex(el => el.id === id) !== -1;                     // TRUE --> It is liked
+        return this.likes.findIndex(el => el.id === id) !== -1;                     // TRUE --> It is liked !
     }
 
     getNumLikes () {
