@@ -5,29 +5,27 @@ export const elements = {
     searchResList: document.querySelector('.results__list'),
     searchResPages: document.querySelector('.results__pages'),
     recipe: document.querySelector('.recipe'),
-    shopping: document.querySelector('.shopping__list'),
-    likesMenu: document.querySelector('.likes__field'),
+    shoppingList: document.querySelector('.shopping__list'),
+    likesMenu:  document.querySelector('.likes__field'),
     likesList: document.querySelector('.likes__list')
-}; 
+};
 
-export const elementStrings = {
+export const elementString = {
     loader: 'loader'
 };
 
 export const renderLoader = parent => {
-    const loader =
-    `
-    <div class="${elementStrings.loader}">
-        <svg>
-            <use href="img/icons.svg#icon-cw"></use>
-        </svg>
-    </div>
+    const markup = `
+        <div class="${elementString.loader}">
+            <svg> 
+                <use href="img/icons.svg#icon-cw"></use>
+            </svg>
+        </div>
     `;
-    parent.insertAdjacentHTML('afterbegin', loader);
+    parent.insertAdjacentHTML('afterBegin', markup);
 };
 
 export const clearLoader = () => {
-    const loader = document.querySelector(`.${elementStrings.loader}`);
-    if(loader) loader.parentElement.removeChild(loader);
+    const loader = document.querySelector(`.${elementString.loader}`);
+    if (loader) loader.parentElement.removeChild(loader);
 };
-
